@@ -2,7 +2,7 @@
 layout: post
 title:  "Test post"
 date:   2014-07-05 17:52:36
-categories: jekyll update
+categories: Test post
 ---
 
 This is a test `Java` post. Just trying to understand the line width and font settings and how they get applied. It its

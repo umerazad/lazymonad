@@ -12,10 +12,8 @@ markdown: redcarpet-pygments
 title : Lazy Thoughts!
 tagline: Thoughts on Programming, Distributed Systems and Random stuff.
 author :
-  name : Muhammad Umer Azad
-  #email : crtstartup@outlook.com
-  github : umerazad
-  twitter : umerazad
+  name : crtstartup
+  email : crtstartup@outlook.com
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt
@@ -77,10 +75,10 @@ JB :
   # Set 'provider' to the comment provider you want to use.
   # Set 'provider' to false to turn commenting off globally.
   #
-  # comments :
-  #   provider : disqus
-  #   disqus :
-  #     short_name : jekyllbootstrap
+  comments :
+    provider : disqus
+    disqus :
+    short_name : lazymonad
   #   livefyre :
   #     site_id : 123
   #   intensedebate :

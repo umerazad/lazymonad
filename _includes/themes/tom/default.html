@@ -12,6 +12,7 @@
     <link media="only screen and (max-device-width: 480px)" href="{{ ASSET_PATH }}/css/mobile.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ ASSET_PATH }}/css/ss-social.css" type="text/css" />
     <link rel="stylesheet" href="{{ ASSET_PATH }}/css/solarized.css"/>
+    <link rel="stylesheet" href="{{ ASSET_PATH }}/webicons/webicons.css"/>
 
 
   </head>
@@ -41,26 +42,19 @@
 
         <!-- </ul> -->
       </section>
-      <div class="footer">
-        <div class="container">
-          <a href="https://twitter.com/umerazad" class="twitter-follow">
-            Follow @umerazad on Twitter
-          </a>
 
-          <section class="meta">
-            <a class="block" href="https://github.com/umerazad">
-              <span class="ss-social-circle ss-octocat" />
-            </a>
 
-            <a class="block" href="https://github.com/umerazad/feedback">
-                <span class="ss-social-circle ss-mail" />
-            </a>
-          </section>
 
+      <div class="footer" style="text-align: center" >
+          <a class="webicon twitter large" href="https://twitter.com/umerazad">Twitter</a>
+          <a class="webicon github large" href="https://github.com/users/umerazad">Github</a>
+          <a class="webicon linkedin large" href="https://linkedin.com/umerazad">LinkedIn</a>
           <div style="clear: both"></div>
         </div>
       </div>
 
+
       {% include JB/analytics %}
+      {% include JB/webicons %}
   </body>
 </html>
