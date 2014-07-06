@@ -1,0 +1,97 @@
+body {
+  padding: 0 20px;
+}
+
+.container {
+  width: 100%;
+  overflow-x: visible;
+}
+
+.header {
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.name {
+}
+
+.name a {
+  font-size: 24px;
+}
+
+.menu {
+  display: none;
+}
+
+.social {
+  display: none;
+}
+
+.hero {
+  height: 100px;
+  margin: 0 -20px;
+}
+
+.content p {
+  font-size: 16px;
+  margin: 15px 0;
+}
+.content li {
+  font-size: inherit;
+}
+.content img {
+  max-width: 320px !important;
+  margin: 0 -20px !important;
+  padding: 0;
+  border: 0;
+  border-radius: 0 !important;
+}
+
+.title {
+  margin: 20px 0px 20px -0px;
+  padding: 10px;
+}
+
+h1 {
+  border: 0;
+  margin: 0;
+  padding: 0 0 10px 0;
+  font-size: 20px;
+}
+
+  h2, h3 {
+    font-size: 17px;
+    border: 0;
+    margin: 25px 10px 0px -25px;
+    padding-bottom: 0;
+  }
+
+.listing a {
+  text-decoration: none;
+}
+.listing span {
+  display: none;
+}
+
+.footer .twitter-follow {
+  margin: 0 auto;
+  float: inherit;
+}
+  .footer .meta {
+    margin: 0 auto;
+    float: inherit;
+  }
+.about-wrapper {
+  height: 200px;
+}
+  .about-wrapper .read-more, .about-wrapper .title {
+    display: none;
+  }
+.about-other {
+  width: 100%;
+  margin-top: 0;
+  padding: 20px 10px;
+}
+  .about-other p {
+    font-size: 16px;
+  }
