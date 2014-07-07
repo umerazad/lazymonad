@@ -127,7 +127,7 @@ li {
   }
 
   .name a {
-      font-size: 30px;
+      font-size: 26px;
       font-family: 'Avenir Next W01 Thin';
       font-weight: normal;
       text-transform: uppercase;
@@ -195,13 +195,13 @@ h1 {
     margin: 0;
     font-family: 'Avenir Next LT W01 Bold';
     font-weight: bold;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 400;
     color: #444;
 }
 h1 em, h1 i {
     font-family: 'AvenirNextLTW01-BoldIta' !important;
-    font-weight: normal;
+    font-weight: bold;
     font-style: normal;
   }
 
@@ -211,12 +211,12 @@ h1 em, h1 i {
       border-left: 5px solid #eee;
       font-family: 'Avenir Next LT W01 Bold';
       font-weight: bold;
-      font-size: 20px;
+      font-size: 23px;
       color: #444;
   }
   h2 em, h2 i {
       font-family: 'AvenirNextLTW01-BoldIta' !important;
-      font-weight: normal;
+      font-weight: bold;
       font-style: normal;
 }
 
@@ -393,7 +393,6 @@ h3 {
   }
   .about-wrapper {
       background-color: #000;
-      background-image: url('/images/holman-lolgreyscale.jpg');
       background-size: cover;
       background-position: 50%;
       height: 100vh;

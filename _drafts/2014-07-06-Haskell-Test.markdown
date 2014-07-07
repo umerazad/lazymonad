@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Application Monitoring Best Practices"
+title:  "Test Post"
 date:   2014-07-06 17:52:36
-categories: jekyll update
+categories: Test
 ---
 
 This is a test `Haskell` for tripple tick.

@@ -23,36 +23,30 @@
       <div class="header">
         <div class="container">
           <ul class="menu">
-            <li><a href="/about">About</a></li>
+            <li><a class="extra" href="{{ BASE_PATH }}/about.html">About</a></li>
             <li><a class="extra" href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Archive</a></li>
             <li><a class="extra" href="{{ BASE_PATH }}{{ site.JB.categories_path }}">Categories</a></li>
             <li><a class="extra" href="{{ BASE_PATH }}{{ site.JB.tags_path }}">Tags</a></li>
           </ul>
 
           <section class="name">
-          <a href="/">Umer<b>Azad</b></a>
+          <a href="/"><b>Umer</b>Azad</a>
           </section>
         </div>
       </div>
 
       <section class="container content">
-      <!-- <ul class="listing"> -->
-
         {{ content }}
-
-        <!-- </ul> -->
       </section>
-
-
 
       <div class="footer" style="text-align: center" >
           <a class="webicon twitter large" href="https://twitter.com/umerazad">Twitter</a>
           <a class="webicon github large" href="https://github.com/users/umerazad">Github</a>
           <a class="webicon linkedin large" href="https://linkedin.com/umerazad">LinkedIn</a>
+          <a class="webicon rss large" href="http://www.lazymonad.com/atom.xml">Atom</a>
           <div style="clear: both"></div>
         </div>
       </div>
-
 
       {% include JB/analytics %}
       {% include JB/webicons %}

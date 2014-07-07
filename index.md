@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Monads have nothing to do with laziness!
+title: Lazy Monad!
 tagline: Programming, distributed systems, functional stuff!
 ---
 {% include JB/setup %}
