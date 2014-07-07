@@ -7,42 +7,49 @@
     <link href="http://www.lazymonad.com/atom.xml" rel="alternate" title="lazymonad" type="application/atom+xml" />
     <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
 
-    <link type="text/css" rel="stylesheet" href="http://fast.fonts.com/cssapi/d70ca5cd-778e-48cc-9e59-6b276425c670.css"/>
-    <link rel="stylesheet" href="{{ ASSET_PATH }}/css/base.css" type="text/css" media="screen, projection" />
-    <link media="only screen and (max-device-width: 480px)" href="{{ ASSET_PATH }}/css/mobile.css" type="text/css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ ASSET_PATH }}/css/ss-social.css" type="text/css" />
-    <link rel="stylesheet" href="{{ ASSET_PATH }}/css/solarized.css"/>
+    <link rel="stylesheet" href="{{ ASSET_PATH }}/css/solarized-dark.css"/>
     <link rel="stylesheet" href="{{ ASSET_PATH }}/webicons/webicons.css"/>
 
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="{{ ASSET_PATH }}/css/screen.css" type="text/css" media="screen, projection" />
+
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   </head>
   <body>
 
     <div class="site">
 
-      <div class="header">
-        <div class="container">
-          <ul class="menu">
-            <li><a class="extra" href="{{ BASE_PATH }}/about.html">About</a></li>
-            <li><a class="extra" href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Archive</a></li>
-            <li><a class="extra" href="{{ BASE_PATH }}{{ site.JB.categories_path }}">Categories</a></li>
-            <li><a class="extra" href="{{ BASE_PATH }}{{ site.JB.tags_path }}">Tags</a></li>
-          </ul>
+        <section class="name">
+        </section>
 
-          <section class="name">
-          <a href="/"><b>Umer</b>Azad</a>
-          </section>
-        </div>
+        <div class="title">
+          <a href="/"><b>Umer</b><i>Azad</i></a>
+            <a class="extra" href="{{ BASE_PATH }}/about.html">About</a>
+            <a class="extra" href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Archive</a>
+            <a class="extra" href="{{ BASE_PATH }}{{ site.JB.categories_path }}">Categories</a>
+            <a class="extra" href="{{ BASE_PATH }}{{ site.JB.tags_path }}">Tags</a>
+
       </div>
 
-      <section class="container content">
+      <div id="post">
+        <ul class="posts">
         {{ content }}
-      </section>
+      </div>
 
       <div class="footer" style="text-align: center" >
           <a class="webicon twitter large" href="https://twitter.com/umerazad">Twitter</a>
-          <a class="webicon github large" href="https://github.com/users/umerazad">Github</a>
-          <a class="webicon linkedin large" href="https://linkedin.com/umerazad">LinkedIn</a>
+          <a class="webicon github large" href="https://github.com/umerazad">Github</a>
+          <a class="webicon linkedin large" href="https://www.linkedin.com/in/umerazad">LinkedIn</a>
           <a class="webicon rss large" href="http://www.lazymonad.com/atom.xml">Atom</a>
           <div style="clear: both"></div>
         </div>
