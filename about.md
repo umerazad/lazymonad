@@ -6,9 +6,9 @@ tagline: Programming, distributed systems, functional stuff!
 {% include JB/setup %}
 
 <div class="container">
-    <h2>Hi! My full name is Muhammad Umer Azad.</h2>
+    <h2>Muhammad Umer Azad</h2>
     <p>
-    I am a software engineer living in Seattle since 2005. I love working on large scale distributed systems. I am an aspiring haskeller and my love for haskell can be measured by the fact that I didn't try to write another Monad tutorial. I am a father of a baby boy (Zakariyya). When my baby dragon isn't around I like to read, code, sleep, eat and play with my camera gear.
+    I am a software engineer living in Seattle since 2005. I love working on large scale distributed systems. I am an aspiring haskeller and my love for haskell can be measured by the fact that I didn't try to write another Monad tutorial. I am a father of a baby boy (Zakariyya). When my baby dragon isn't around I like to read, code, sleep and eat.
 
     <h2>Contact me</h2>
     <p>
