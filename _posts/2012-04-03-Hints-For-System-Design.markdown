@@ -6,7 +6,7 @@ category: "System Design"
 tags: ["Recommended Reading", "Distributed Systems", "System Design", "Butler W. Lampson"]
 ---
 
-In 1983, [Butler Lampson](http://research.microsoft.com/en-us/um/people/blampson/) published a landmark paper about [Hints of Computer System Design](http://research.microsoft.com/en-us/um/people/blampson/33-Hints/Acrobat.pdf). As a practitioner and a student of distributed systems design, I find it immensely insightful and I habitually go back and re-read this paper every few months. In this post I'll try and summarize some of the learnings from this paper that I've gained over the years. 
+In 1983, [Butler Lampson](http://research.microsoft.com/en-us/um/people/blampson/) published a landmark paper about [Hints of Computer System Design](http://research.microsoft.com/en-us/um/people/blampson/33-Hints/Acrobat.pdf). As a practitioner and a student of distributed systems design, I find it immensely insightful and I habitually go back and re-read this paper every few months. In this post I'll try and summarize some of the learnings from this paper that I've gained over the years.
 
 <hr/>
 
@@ -101,10 +101,10 @@ Use hints</TD>
 
 ### Key Takeaways ###
 
-* Engineering is all about compromises. You may want your service to be _simple, dependable, scalable, efficient, gracefully degradable, fault tolerant and highly respnosive_. All these are reasonable and very desirable goals but trying to achieve them all at once may not be possible. Choose your battles sensibly. Absence of clearly prioritized goals could lead to the temptation of trying to achieve all at once which most likely will result in a failure. Having said that, sometimes with a lot of effort you may be able to achieve all these goals but it would most definitely be a high cost enterprise. 
+* Engineering is all about compromises. You may want your service to be _simple, dependable, scalable, efficient, gracefully degradable, fault tolerant and highly respnosive_. All these are reasonable and very desirable goals but trying to achieve them all at once may not be possible. Choose your battles sensibly. Absence of clearly prioritized goals could lead to the temptation of trying to achieve all at once which most likely will result in a failure. Having said that, sometimes with a lot of effort you may be able to achieve all these goals but it would most definitely be a high cost enterprise.
 * _Features, speed, cost, time to market, dependable, usable, adaptable_ etc. are examples of trade offs. Think which ones matter most for your service?
-* Write a spec. Writing a spec is difficult because it forces you to think and _thinking_ is hard. For the very least, try and write down about the _abstract states_ and the _interfaces_ that deal with them. Writing gives clarity of mind as Guindon once said "writing is nature's way to showing you how fuzzy your thinking is ..." [Leslie Lamport](http://dpb.bitbucket.org/leslie-lamport-on-thinking-first-and-on-commenting-code-2007.html). 
-* Keep interfaces simple. An interface should capture the minimum essentials of an abstraction. Don't generalize; generalizations are generally wrong. When an interface undertakes too much, the result is an implementation which is large, slow, and complicated.
+* Write a spec. Writing a spec is difficult because it forces you to think and _thinking_ is hard. For the very least, try and write down about the _abstract states_ and the _interfaces_ that deal with them. Writing gives clarity of mind as Guindon once said "writing is nature's way to showing you how fuzzy your thinking is ..." [Leslie Lamport](http://dpb.bitbucket.org/leslie-lamport-on-thinking-first-and-on-commenting-code-2007.html).
+* Keep interfaces simple. An interface should capture the minimum essentials of an abstraction. Don't generalize; generalizations are generally wrong (no pun intended). When an interface undertakes too much, the result is an implementation which is large, slow, and complicated.
 * Get it right. Neither abstraction nor simplicity is a substitute for getting it right.
 * Make it fast, rather than general or powerful. It is much better to have basic operations executed quickly than more powerful ones which are slower (of course, a fast, powerful operation is best, if you know how to get it). The trouble with slow, powerful operations is that the client who doesn't want the power pays more for the basic function. Handle normal and worst case separately as a rule, because the requirements for the two are quite different: the normal case must be fast; the worst case must make some progress.
 * The purpose of abstraction is to conceal undesirable properties; desirable ones should not be hidden.
@@ -116,13 +116,13 @@ Use hints</TD>
 * End-to-end error recovery is absolutely necessary for a reliable system, and any other error detection or recovery is not logically necessary, but is strictly for performance. Many uses of hints are applications of this idea. Log updates to record the truth about the state of an object.
 * Make actions atomic or restartable. Make APIs idempotent.
 * Try and keep your system simple enough so that you can still understand it. Keeping systems simple is hard and its often not rewarded. Overtime as the system evolves only abstractions and interfaces will save you.
-* Time to market - keep it real. Learn what customers really want. Make it good enough and then iterate. Ship often and ship early. Good enough is good enough because many errors aren't fetal. For example, at least once guarantee is good enough; trying to provide at-most once guarantee may not be worth the effort. 
-* Many a time approximations are _good enough_. 
+* Time to market - keep it real. Learn what customers really want. Make it good enough and then iterate. Ship often and ship early. Good enough is good enough because many errors aren't fetal. For example, at least once guarantee is good enough; trying to provide at-most once guarantee may not be worth the effort.
+* Many a time approximations are _good enough_.
 * Make it efficient by reducing waste. Aim for efficient enough, not optimal. _Efficient_ has two different definitions; one by implementor and other by the client. Understand what is important for your service. In general, optimizations introduce complexity and search for optimality in distributed systems implementation is a bad idea.
-* Predicting future is hard. Plan for success and change. Successful systems last a long time and eventually have to scale. If you want to plan for success; you better plan for scalability. Embrace uncertainty and develop incrementally. 
+* Predicting future is hard. Plan for success and change. Successful systems last a long time and eventually have to scale. If you want to plan for success; you better plan for scalability. Embrace uncertainty and develop incrementally.
 * Failures are inevitable. Embrace them instead of avoiding them. Make failures cheap.
-* Your system will evolve much more successfully if you design it to be extensible. Internet and HTML are examples of extensible systems. HTML processors drop unrecognized elements which allows for extensibility. 
-* Dependability has three aspects: 
+* Your system will evolve much more successfully if you design it to be extensible. Internet and HTML are examples of extensible systems. HTML processors drop unrecognized elements which allows for extensibility.
+* Dependability has three aspects:
     - Reliable - Gives the right answer.
     - Available - Gives the answer promptly.
     - Secure - Works in spite of bad guys.
