@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Hints for System Design"
-date:   2012-04-03 02:45:15
+date:   2012-04-29 02:45:15
 category: "System Design"
 tags: ["Recommended Reading", "Distributed Systems", "System Design", "Butler W. Lampson"]
 ---
