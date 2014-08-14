@@ -5,8 +5,8 @@ module Jekyll
     class Markdown < Converter
       safe true
 
-      pygments_prefix "\n"
-      pygments_suffix "\n"
+      highlighter_prefix "\n"
+      highlighter_suffix "\n"
 
       def setup
         return if @setup
@@ -55,7 +55,7 @@ module Jekyll
         def initialize(config)
           require 'redcarpet'
           require 'pygments'
-          
+
           @config = config
           @redcarpet_extensions = {}
           @config['redcarpet']['extensions'].each { |e| @redcarpet_extensions[e.to_sym] = true }
@@ -64,7 +64,7 @@ module Jekyll
             def initialize(extensions = {})
               super extensions.merge(:link_attributes => { :target => "_blank" }) # Open link in new window
             end
-            
+
             def block_code(code, lang)
               lang = lang && lang.split.first || "text"
               colorized = Pygments.highlight(code, :lexer => lang, :options => {:lineanchors => "line"}) # Add lineanchors for line numbers
@@ -73,7 +73,7 @@ module Jekyll
 
             def codespan(code)
               "<code class=\"inline-code\">#{code}</code>" # Inline code custom class
-            end 
+            end
           end
         rescue LoadError
           STDERR.puts 'You are missing a library required for Markdown. Please run:'
