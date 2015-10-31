@@ -5,7 +5,7 @@
 /*****************************************************************************/
 
 @font-face {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: normal;
     font-style: normal;
 
@@ -29,7 +29,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-size: 100%;
 }
 
@@ -91,7 +91,7 @@ ul.posts li {
 
 ul.posts span {
     font-family: inconsolata
-    font-size: 15px;
+    font-size: 13px;
     color: #999;
 }
 
@@ -120,13 +120,13 @@ ul.posts span {
 
 .site .title b {
       font-size: 26px;
-      font-family: 'Avenir Next W01 Thin';
+      font-family: 'Avenir Next W01';
       font-weight: bold;
       text-transform: uppercase;
 }
 .site .title i {
       font-size: 26px;
-      font-family: 'Avenir Next W01 Thin';
+      font-family: 'Avenir Next W01';
       font-weight: normal;
       text-transform: uppercase;
 }
@@ -204,7 +204,7 @@ ul.posts span {
 #post ul,
 #post ol {
     margin-left: 1.35em;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 #post code, #post .code {
@@ -239,20 +239,20 @@ ul.posts span {
 /* Customizations */
 
 blockquote {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     padding: 20px 30px 10px 30px;
     border: 1px solid black;
     margin: 15px 0;
 }
 
 #post p {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     color: #333;
     font-size: 14px;
 }
 
 #post p.meta {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-size: 11px;
     text-transform: uppercase;
     color: #666;
