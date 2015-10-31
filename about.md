@@ -8,7 +8,7 @@ tagline: Programming, distributed systems, functional stuff!
 <div class="container">
     <h2>Muhammad Umer Azad</h2>
     <p>
-    I am a software engineer living in Seattle area since 2005. I love reading about and dabbling with distributed systems, runtime environments and new languages. Also, I am an aspiring haskeller and my love for haskell can be measured by the fact that I didn't try to write another Monad tutorial.
+    I am a software engineer living in Bay Area. I love reading about and dabbling with distributed systems, runtime environments and new languages. Also, I am an aspiring haskeller and my love for haskell can be measured by the fact that I didn't try to write another Monad tutorial.
 
     <h2>Contact me</h2>
     <p>
