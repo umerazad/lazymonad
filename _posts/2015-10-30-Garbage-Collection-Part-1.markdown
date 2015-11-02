@@ -23,11 +23,6 @@ In this post we'll go over a brief overview of the _explicit_ vs _automatic_ mem
         * [Garbage Collector Components](#gc_components)
           * [Mutator](#gc_mutator)
           * [Collector](#gc_collector)
-        * [Garbage Collection Algorithm Categories](#gc_algorithm_categories)
-          * [Mark Sweep](#gc_mark_sweep)
-          * [Mark Compact](#gc_mark_compact)
-          * [Copying](#gc_copying)
-          * [Reference Counted](#gc_reference_counted)
         * [Analysis Criteria](#gc_analysis_criteria)
 
 <br/>
