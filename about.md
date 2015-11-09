@@ -13,7 +13,7 @@ tagline: Programming, distributed systems, functional stuff!
     <h2>Contact me</h2>
     <p>
     If you want to get in touch, send
-    <a href="mailto:&#099;&#114;&#116;&#115;&#116;&#097;&#114;&#116;&#117;&#112;&#064;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#046;&#099;&#111;&#109;">an email</a>. My PGP key is <a href="http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x699A34A0758802B6">here.</a>
+    <a href="mailto:&#099;&#114;&#116;&#115;&#116;&#097;&#114;&#116;&#117;&#112;&#064;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#046;&#099;&#111;&#109;">an email</a>. My PGP key is <a href="http://pgp.mit.edu/pks/lookup?op=vindex&search=0xD7DF4EBD66ACE519">here.</a>
     </p>
 
     <p>

@@ -1,2 +1,3 @@
 #!/bin/sh
-jekyll build & jekyll serve
+bundle exec jekyll build
+bundle exec jekyll serve
