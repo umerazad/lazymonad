@@ -30,8 +30,8 @@ In this post we'll go over a brief overview of the _explicit_ vs _automatic_ mem
 
 Computer memory is a finite resource. Historically, for any reasonably large software system, memory management was typically one of the leading concerns of its designers. They had the momentous task of picking one of the following options:
 
-1. Explicit memory management
-2. Automatic memory management
+1. [Explicit memory management] (#explicit_memory_management)
+2. [Automatic memory management] (#automatic_memory_management)
 
 Let's briefly look at the pros and cons of both approaches.
 

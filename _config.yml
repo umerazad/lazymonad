@@ -4,7 +4,7 @@ permalink: /:categories/:year/:month/:day/:title
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 highlighter : pygments
-baseurl: /lazymonad
+baseurl: /
 markdown: redcarpet-pygments
 
 # Themes are encouraged to use these universal variables
@@ -15,4 +15,17 @@ tagline: Thoughts on Programming, Distributed Systems and Random stuff.
 author :
   name : umerazad
   email : umer@fastmail.com
+
+JB :
+  version: 0.2.13
+  BASE_PATH : false
+  ASSET_PATH : false
+  archive_path : /archive.html
+  categories_path : /categories.html
+  tags_path : /tags.html
+
+  analytics :
+    provider : google
+    google :
+      tracking_id : 'UA-51873745-1'
 
