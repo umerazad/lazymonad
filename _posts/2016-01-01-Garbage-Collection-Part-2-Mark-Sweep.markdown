@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Garbage Collection - Mark Sweep Collection"
+title: "Garbage Collection - Part 2 - Mark Sweep Collection"
 date: 2016-01-01 20:14:00
 category: "Language Runtimes"
 tags: ["System Design", "Garbage Collection", "Memory Management", "Language Runtimes"]
