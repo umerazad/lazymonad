@@ -17,7 +17,7 @@ At a high level, an _automatic memory management_ system has two key responsibil
 
 The sole responsibility of a garbage collector is to reclaim the space used by every object that will no longer be used by any of the execution paths in the program. In order to achieve that, it needs to categorize all objects as either _dead_ or _alive_. As we mentioned in [part 1](http://lazymonad.com/language%20runtimes/2015/10/30/Garbage-Collection-Part-1/), most garbage collectors treat _reachability_ as _liveness_. An object is considered _dead_ if none of the program's execution paths can reach it. This post assumes that you've read [part 1](http://lazymonad.com/language%20runtimes/2015/10/30/Garbage-Collection-Part-1/) and are familiar with _mutator_ and _collector_ concepts.
 
-# Categories GC Algorithms
+# Categories Of Garbage Collection Algorithms
 
 
 Most garbage collection schemes can be categorized as one of the four fundamental approaches :
