@@ -6,7 +6,6 @@ enableRobotsTXT = true
 PygmentsCodeFences = true
 PygmentsStyle = "monokai"
 canonifyurls = true
-publishDir = "docs"
 
 # Disqus Username
 # disqusShortname = "disqus_shortname"
