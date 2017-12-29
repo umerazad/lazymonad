@@ -1,0 +1,47 @@
+baseURL = "http://lazymonad.com"
+languageCode = "en"
+title = "Lazy Monad"
+theme = "hugo-nuo"
+enableRobotsTXT = true
+PygmentsCodeFences = true
+PygmentsStyle = "monokai"
+canonifyurls = true
+
+# Disqus Username
+# disqusShortname = "disqus_shortname"
+
+# Google Analytics UA number
+# googleAnalytics = "UA-XXXXXXXX-X"
+
+# Copyright of your post
+copyright = "© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License. See: https://creativecommons.org/licenses/by-nc/4.0/legalcode."
+
+# Initial site menu, you can extend menu with content.
+[[menu.main]]
+  name = "Home"
+  weight = 10
+  identifier = "home"
+  url = "/"
+
+[[menu.main]]
+  name = "Tags"
+  weight = 30
+  identifier = "tags"
+  url = "/tags/"
+
+# Add your own params here
+[params]
+  author = "Muhammad Umer Azad"
+  avatar = "/img/avatar.jpg"
+  seotitle = "LazyMonad"
+  paginate = 10
+
+  # Choose your social networks
+  email = "umer@fastmail.com"
+  github = "umerazad"
+  twitter = "umerazad"
+  linkedin = "umerazad"
+
+  # Google Webmaster
+  # https://www.google.com/webmasters/
+  # googleSiteVerification = "_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc"
