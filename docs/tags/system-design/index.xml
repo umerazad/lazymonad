@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>System Design on Lazy Monad</title>
+    <link>http://lazymonad.com/tags/system-design/</link>
+    <description>Recent content in System Design on Lazy Monad</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License. See: https://creativecommons.org/licenses/by-nc/4.0/legalcode.</copyright>
+    <lastBuildDate>Fri, 01 Jan 2016 20:14:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://lazymonad.com/tags/system-design/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Garbage Collection - Part 2 - Mark Sweep Collection</title>
+      <link>http://lazymonad.com/post/garbage-collection-part-2-mark-sweep/</link>
+      <pubDate>Fri, 01 Jan 2016 20:14:00 +0000</pubDate>
+      
+      <guid>http://lazymonad.com/post/garbage-collection-part-2-mark-sweep/</guid>
+      <description>Disclaimer This post provides an intentionally watered-down overview of mark sweep garbage collection algorithm and the tradeoffs involved around it. A lot of the gory implementation details aren&amp;rsquo;t mentioned.
+Recap At a high level, an automatic memory management system has two key responsibilities:
+ Allocate space for new objects Reclaim space from dead objects  The sole responsibility of a garbage collector is to reclaim the space used by every object that will no longer be used by any of the execution paths in the program.</description>
+    </item>
+    
+    <item>
+      <title>Garbage Collection - Part 1</title>
+      <link>http://lazymonad.com/post/garbage-collection-part-1/</link>
+      <pubDate>Fri, 30 Oct 2015 11:58:00 +0000</pubDate>
+      
+      <guid>http://lazymonad.com/post/garbage-collection-part-1/</guid>
+      <description>TL;DR Stop reading if you&amp;rsquo;ve a computer with infinite memory.
+In this series of blog posts, I&amp;rsquo;ll go over some well known garbage collection techniques and analyze the tradeoffs involved from the system design perspective. All the ideas are taken from existing literature and I am not making any claims of original work. Garbage collection is a subject that is very close to my heart, and by writing about it I hope to improve my own understanding of modern language runtimes.</description>
+    </item>
+    
+    <item>
+      <title>Are VMMs making us complacent?</title>
+      <link>http://lazymonad.com/post/are-vmms-making-us-complacent/</link>
+      <pubDate>Sat, 04 Apr 2015 11:34:00 +0000</pubDate>
+      
+      <guid>http://lazymonad.com/post/are-vmms-making-us-complacent/</guid>
+      <description>I recently came across an interesting opinion paper that posits &amp;ndash; modern VMMs are microkernels done right. Its a bit dated but a good read nonetheless. I couldn&amp;rsquo;t help but disagree with some parts of their claims. In all honesty, comparing VMMs to microkernels doesn&amp;rsquo;t feel like an apples to apples comparison. I am summing up my thoughts for your instructive criticism.
+Avoid Liability Inversion Their claim about microkernels having performance problems because of page evictions by user-space pagers is correct for the most part.</description>
+    </item>
+    
+    <item>
+      <title>Hints for System Design</title>
+      <link>http://lazymonad.com/post/hints-for-system-design/</link>
+      <pubDate>Sun, 29 Apr 2012 02:45:15 +0000</pubDate>
+      
+      <guid>http://lazymonad.com/post/hints-for-system-design/</guid>
+      <description>In 1983, Butler Lampson published a landmark paper about Hints of Computer System Design. As a practitioner and a student of distributed systems design, I find it immensely insightful and I habitually go back and re-read this paper every few months. In this post I&amp;rsquo;ll try and summarize some of the learnings from this paper that I&amp;rsquo;ve gained over the years.
+ Prerequisite Before jumping into system design, think hard about what is it that you are trying to accomplish?</description>
+    </item>
+    
+  </channel>
+</rss>

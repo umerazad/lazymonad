@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Hints for System Design</title>
+
+  
+  
+
+
+
+
+
+  
+  <meta name="author" content="Muhammad Umer Azad" />
+  <meta name="description" content="In 1983, Butler Lampson published a landmark paper about Hints of Computer System Design. As a practitioner and a student of distributed systems design, I find it immensely insightful and I habitually go back and re-read this paper every few months. In this post I&amp;rsquo;ll try and summarize some of the learnings from this paper that I&amp;rsquo;ve gained over the years.
+ Prerequisite Before jumping into system design, think hard about what is it that you are trying to accomplish?" />
+
+  
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@umerazad" />
+    <meta name="twitter:title" content="Hints for System Design" />
+    <meta name="twitter:description" content="In 1983, Butler Lampson published a landmark paper about Hints of Computer System Design. As a practitioner and a student of distributed systems design, I find it immensely insightful and I habitually go back and re-read this paper every few months. In this post I&amp;rsquo;ll try and summarize some of the learnings from this paper that I&amp;rsquo;ve gained over the years.
+ Prerequisite Before jumping into system design, think hard about what is it that you are trying to accomplish?" />
+    <meta name="twitter:image" content="http://lazymonad.com/img/avatar.jpg" />
+  
+
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Hints for System Design" />
+  <meta property="og:description" content="In 1983, Butler Lampson published a landmark paper about Hints of Computer System Design. As a practitioner and a student of distributed systems design, I find it immensely insightful and I habitually go back and re-read this paper every few months. In this post I&amp;rsquo;ll try and summarize some of the learnings from this paper that I&amp;rsquo;ve gained over the years.
+ Prerequisite Before jumping into system design, think hard about what is it that you are trying to accomplish?" />
+  <meta property="og:url" content="http://lazymonad.com/post/hints-for-system-design/" />
+  <meta property="og:image" content="http://lazymonad.com/img/avatar.jpg" />
+
+
+
+
+<meta name="generator" content="Hugo 0.31.1" />
+
+
+<link rel="canonical" href="http://lazymonad.com/post/hints-for-system-design/" />
+<link rel="alternative" href="http://lazymonad.com/index.xml" title="Lazy Monad" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Lazy Monad" />
+<meta name="msapplication-tooltip" content="Lazy Monad" />
+<meta name='msapplication-navbutton-color' content="#5fbf5e" />
+<meta name="msapplication-TileColor" content="#5fbf5e" />
+<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+<link rel="icon" href="http://lazymonad.com/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="http://lazymonad.com/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="http://lazymonad.com/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="http://lazymonad.com/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="http://lazymonad.com/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="http://lazymonad.com/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="http://lazymonad.com/css/bundle.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="http://lazymonad.com/img/avatar.jpg" alt="Avatar">
+  
+  <h2 class="title">Lazy Monad</h2>
+  
+  <p class="subtitle"></p>
+  <button class="menu-toggle" type="button">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+            
+            
+            
+              is-active
+            ">
+            <a href="http://lazymonad.com/">Home</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="http://lazymonad.com/tags/">Tags</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="http://lazymonad.com/about/">About</a>
+          </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list">
+
+      
+      <li class="social-item">
+        <a href="mailto:umer@fastmail.com" title="Email"><span class="icon icon-email"></span></a>
+      </li>
+
+      
+      <li class="social-item">
+        <a href="//github.com/umerazad" title="GitHub"><span class="icon icon-github"></span></a>
+      </li>
+
+      <li class="social-item">
+        <a href="//twitter.com/umerazad" title="Twitter"><span class="icon icon-twitter"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="//www.linkedin.com/in/umerazad" title="Linkedin"><span class="icon icon-linkedin"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="http://lazymonad.com/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Hints for System Design</h1>
+      <p class="post-meta">@Muhammad Umer Azad · Apr 29, 2012 · 6 min read</p>
+    </header>
+    <article class="post-content">
+
+<p>In 1983, <a href="http://research.microsoft.com/en-us/um/people/blampson/">Butler Lampson</a> published a landmark paper about <a href="http://research.microsoft.com/en-us/um/people/blampson/33-Hints/Acrobat.pdf">Hints of Computer System Design</a>. As a practitioner and a student of distributed systems design, I find it immensely insightful and I habitually go back and re-read this paper every few months. In this post I&rsquo;ll try and summarize some of the learnings from this paper that I&rsquo;ve gained over the years.</p>
+
+<hr/>
+
+<h3 id="prerequisite">Prerequisite</h3>
+
+<p><em>Before jumping into system design, think hard about what is it that you are trying to accomplish? Have a clear idea about what your goals are?</em></p>
+
+<hr/>
+
+<h3 id="hints-principles">Hints / Principles</h3>
+
+<p>Butler organizes his suggestions along two axis.
+&gt;1. <em>Why</em> - Why it helps in making a good system?
+&gt;2. <em>Where</em> - Where in the system design it helps?</p>
+
+<p><P ALIGN="CENTER"><CENTER><TABLE CELLSPACING=0 BORDER=0 CELLPADDING=7 WIDTH=648>
+<TR><TD WIDTH="19%" VALIGN="TOP">
+<P><B>Why?</B></TD>
+<TD WIDTH="31%" VALIGN="TOP">
+<I><P ALIGN="CENTER">Functionality</P>
+</I><P>Does it work?</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<I><P ALIGN="CENTER">Speed</I> </P>
+<P>Is it fast enough?</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<I><P ALIGN="CENTER">Fault-tolerance</P>
+</I><P>Does it keep working?</TD>
+</TR>
+<TR><TD WIDTH="19%" VALIGN="TOP">
+<B><P>Where?</B></TD>
+<TD WIDTH="31%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>&nbsp;</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="19%" VALIGN="TOP">
+<I><P>Completeness</I></TD>
+<TD WIDTH="31%" VALIGN="TOP">
+<P>Separate normal and <BR>
+worst case</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Shed load<BR>
+End-to-end<BR>
+Safety first</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P><BR>
+End-to-end</TD>
+</TR>
+<TR><TD WIDTH="19%" VALIGN="TOP">
+<I><P>Interface</I></TD>
+<TD WIDTH="31%" VALIGN="TOP">
+<P>Do one thing well:<BR>
+Don’t generalize<BR>
+Get it right<BR>
+Don’t hide power<BR>
+Use procedure arguments<BR>
+Leave it to the client<BR>
+Keep basic interfaces stable<BR>
+Keep a place to stand</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Make it fast<BR>
+Split resources&#9;<BR>
+Static analysis<BR>
+Dynamic translation</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>End-to-end<BR>
+Log updates<BR>
+Make actions atomic</TD>
+</TR>
+<TR><TD WIDTH="19%" VALIGN="TOP">
+<I><P>Implementation</I></TD>
+<TD WIDTH="31%" VALIGN="TOP">
+<P>Plan to throw one away<BR>
+Keep secrets<BR>
+Use a good idea again<BR>
+Divide and conquer</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Cache answers <BR>
+Use hints &#9; <BR>
+Use brute force<BR>
+Compute in background<BR>
+Batch processing</TD>
+<TD WIDTH="25%" VALIGN="TOP">
+<P>Make actions atomic<BR>
+Use hints</TD>
+</TR>
+</TABLE>
+</CENTER></P></p>
+
+<hr/>
+
+<h3 id="key-takeaways">Key Takeaways</h3>
+
+<ul>
+<li>Engineering is all about compromises. You may want your service to be <em>simple, dependable, scalable, efficient, gracefully degradable, fault tolerant and highly responsive</em>. All these are reasonable and very desirable goals but trying to achieve them all at once may not be possible. Choose your battles sensibly. Absence of clearly prioritized goals could lead to the temptation of trying to achieve all at once which most likely will result in a failure. Having said that, sometimes with a lot of effort you may be able to achieve all these goals but it would most definitely be a high cost enterprise.</li>
+<li><em>Features, speed, cost, time to market, dependable, usable, adaptable</em> etc. are examples of trade offs. Think which ones matter most for your service?</li>
+<li>Write a spec. Writing a spec is difficult because it forces you to think and <em>thinking</em> is hard. For the very least, try and write down about the <em>abstract states</em> and the <em>interfaces</em> that deal with them. Writing gives clarity of mind as Guindon once said &ldquo;writing is nature&rsquo;s way to showing you how fuzzy your thinking is &hellip;&rdquo; <a href="http://dpb.bitbucket.org/leslie-lamport-on-thinking-first-and-on-commenting-code-2007.html">Leslie Lamport</a>.</li>
+<li>Keep interfaces simple. An interface should capture the minimum essentials of an abstraction. Don&rsquo;t generalize; generalizations are generally wrong (no pun intended). When an interface undertakes too much, the result is an implementation which is large, slow, and complicated.</li>
+<li>Get it right. Neither abstraction nor simplicity is a substitute for getting it right.</li>
+<li>Make it fast, rather than general or powerful. It is much better to have basic operations executed quickly than more powerful ones which are slower (of course, a fast, powerful operation is best, if you know how to get it). The trouble with slow, powerful operations is that the client who doesn&rsquo;t want the power pays more for the basic function. Handle normal and worst case separately as a rule, because the requirements for the two are quite different: the normal case must be fast; the worst case must make some progress.</li>
+<li>The purpose of abstraction is to conceal undesirable properties; desirable ones should not be hidden.</li>
+<li>Use a good idea again, instead of generalizing it. A specialized implementation of the idea may be much more effective than a general one.</li>
+<li>Split resources in a fixed way if in doubt, rather than sharing them. It is usually faster to allocate dedicated resources, it is often faster to access them, and the behavior of the allocator is more predictable.</li>
+<li>When in doubt, use brute force. Especially as the cost of hardware declines, a straightforward, easily analyzed solution which requires a lot of special-purpose computing cycles is better than a complex, poorly characterized one which may work well if certain assumptions are satisfied. Doing things incrementally almost always costs more [&hellip; and] batch processing permits much simpler error recovery.</li>
+<li>Safety first. In allocating resources, strive to avoid disaster, rather than to attain the optimum.</li>
+<li>Shed load to control demand, rather than allowing the system to become overloaded. Apply back pressure.</li>
+<li>End-to-end error recovery is absolutely necessary for a reliable system, and any other error detection or recovery is not logically necessary, but is strictly for performance. Many uses of hints are applications of this idea. Log updates to record the truth about the state of an object.</li>
+<li>Make actions atomic or restartable. Make APIs idempotent.</li>
+<li>Try and keep your system simple enough so that you can still understand it. Keeping systems simple is hard and its often not rewarded. Overtime as the system evolves only abstractions and interfaces will save you.</li>
+<li>Time to market - keep it real. Learn what customers really want. Make it good enough and then iterate. Ship often and ship early. Good enough is good enough because many errors aren&rsquo;t fetal. For example, at least once guarantee is good enough; trying to provide at-most once guarantee may not be worth the effort.</li>
+<li>Many a time approximations are <em>good enough</em>.</li>
+<li>Make it efficient by reducing waste. Aim for efficient enough, not optimal. <em>Efficient</em> has two different definitions; one by implementor and other by the client. Understand what is important for your service. In general, optimizations introduce complexity and search for optimality in distributed systems implementation is a bad idea.</li>
+<li>Predicting future is hard. Plan for success and change. Successful systems last a long time and eventually have to scale. If you want to plan for success; you better plan for scalability. Embrace uncertainty and develop incrementally.</li>
+<li>Failures are inevitable. Embrace them instead of avoiding them. Make failures cheap.</li>
+<li>Your system will evolve much more successfully if you design it to be extensible. Internet and HTML are examples of extensible systems. HTML processors drop unrecognized elements which allows for extensibility.</li>
+<li>Dependability has three aspects:
+
+<ul>
+<li><strong>Reliable</strong> - Gives the right answer.</li>
+<li><strong>Available</strong> - Gives the answer promptly.</li>
+<li><strong>Secure</strong> - Works in spite of bad guys.</li>
+</ul></li>
+<li>Understand how much dependability is required by your system? In many cases, a dependable <em>undo</em> option would be good enough and you may not need anything else.</li>
+<li>Use abstractions and interfaces and limit complexity by liberating parts from each other. Compose relations using indirect mappings. An example would be the network stack: Source route -&gt; IP addr -&gt; DNS name -&gt; Service name  -&gt; Query.</li>
+</ul>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="http://lazymonad.com/tags/recommended-reading"><span class="tag">Recommended Reading</span></a></li>
+        
+          <li><a href="http://lazymonad.com/tags/distributed-systems"><span class="tag">Distributed Systems</span></a></li>
+        
+          <li><a href="http://lazymonad.com/tags/system-design"><span class="tag">System Design</span></a></li>
+        
+          <li><a href="http://lazymonad.com/tags/butler-w.-lampson"><span class="tag">Butler W. Lampson</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License. See: https://creativecommons.org/licenses/by-nc/4.0/legalcode.This post was published <strong>2069</strong> days ago, its contents might be out of date or inaccurate. 
+      </p>
+    </footer>
+    
+      
+    
+  </section>
+  <footer class="site-footer">
+  <p>© 2017 Lazy Monad</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="http://lazymonad.com/js/bundle.js"></script>
+
+
+
+
+  </body>
+</html>
