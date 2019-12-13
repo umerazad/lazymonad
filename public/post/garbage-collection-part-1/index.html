@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Garbage Collection - Part 1</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Inconsolata', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: darkgreen;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="http://lazymonad.com/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.61.0" />
+        
+
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">Garbage Collection - Part 1</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="http://lazymonad.com/post/">Posts</a></li>
+                            
+                                <li><a href="http://lazymonad.com/tags/">Tags</a></li>
+                            
+                                <li><a href="http://lazymonad.com/about/">About</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:umer@fastmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/umerazad/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/umerazad/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/umerazad/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<main>
+
+    <div>
+        <h2>Garbage Collection - Part 1</h2>
+        <h5>October 30, 2015</h5>
+        
+<a href="http://lazymonad.comtags/system-design"><kbd class="item-tag">System Design</kbd></a>
+
+<a href="http://lazymonad.comtags/garbage-collection"><kbd class="item-tag">Garbage Collection</kbd></a>
+
+<a href="http://lazymonad.comtags/memory-management"><kbd class="item-tag">Memory Management</kbd></a>
+
+<a href="http://lazymonad.comtags/language-runtimes"><kbd class="item-tag">Language Runtimes</kbd></a>
+
+
+    </div>
+
+    <div align="start" class="content"><h2 id="tldr">TL;DR</h2>
+<p>Stop reading if you've a computer with infinite memory.</p>
+<p>In this series of blog posts, I'll go over some well known <em>garbage collection</em> techniques and analyze the tradeoffs involved from the system design perspective. All the ideas are taken from existing literature and I am not making any claims of original work. Garbage collection is a subject that is very close to my heart, and by writing about it I hope to improve my own understanding of modern language runtimes.</p>
+<p>In this post we'll go over a brief overview of the <em>explicit</em> vs <em>automatic</em> memory management approaches. Then we'll establish the terminology that'll serve as the basis of deeper dive into <em>garbage collection</em> algorithms and techniques as discuseed in future blog posts. I know it sounds boring, but just hang in there and I promise we'll get to the fun stuff in the next post.</p>
+<ul>
+<li><a href="#memory-management">Memory Management</a>
+<ul>
+<li><a href="#explicit-memory-management">Explicit Memory Management</a></li>
+<li><a href="#automatic-memory-management">Automatic Memory Management</a>
+<ul>
+<li><a href="#basics-of-automatic-memory-management">Basics Of Automatic Memory Management</a>
+<ul>
+<li><a href="#dynamic-memory-allocation">Dynamic Memory Allocation</a></li>
+<li><a href="#garbage-collector">Garbage Collector</a>
+<ul>
+<li><a href="#mutator">Mutator</a></li>
+<li><a href="#collector">Collector</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>[Desirable Properties Of Garbage Collection Algorithms] (#desirable-properties-of-garbage-collection-algorithms)</li>
+</ul>
+</li>
+</ul>
+<h1 id="memory-management">Memory Management</h1>
+<p>Computer memory is a finite resource. Historically, for any reasonably large software system, memory management was typically one of the leading concerns of its designers. They had the momentous task of picking one of the following options:</p>
+<ol>
+<li>[Explicit memory management] (#explicit-memory-management)</li>
+<li>[Automatic memory management] (#automatic-memory-management)</li>
+</ol>
+<p>Let's briefly look at the pros and cons of both approaches.</p>
+<h2 id="explicit-memory-management">Explicit Memory Management</h2>
+<p><em>Explicit memory management</em> requires programmers to manually <em>free/delete</em> the dynamically allocated memory. Languages, like C/C++, offer almost complete control (even address alignment at times) over the object's lifecycle. For large systems, it requires <em>strict</em> programming discipline to ensure the long term correctness and reliability of the programs. Some common coding pitfalls include:</p>
+<ul>
+<li>Dangling pointers due to releasing a live object</li>
+<li>Memory corruption due to double <em>free</em></li>
+<li>Memory leaks due to forgetting to release memory</li>
+<li>Higher coupling between components due to modeling of ownership semantics in API signatures</li>
+</ul>
+<p>There are many established patterns to avoid these pitfalls, but pretty much everything boils down to maintaining strict coding discipline that requires consistently using the correct memory management strategy. This becomes tricky for large programs where third party dependencies/libraries might force a mix of multiple approaches. Memory issues are arguably among the hardest class of bugs to investigate. For example, in case of <em>dangling pointers</em> or <em>double free</em>, the best outcome is the immediate crash of the program but typically it doesn't happen and the program continues to run exhibiting unpredictable behavior. Hence the saying, <em>to err is human - to blame it on a computer is even more so.</em></p>
+<p>In this day and age, the biggest problem with the option of <em>explicit memory management</em> is that it <em><strong>exists</strong></em>.</p>
+<h1 id="automatic-memory-management">Automatic Memory Management</h1>
+<p><em>Automatic memory management</em> is an essential feature of all modern programming languages. It relieves the programmer from the burden of memory management by presenting an illusion of infinite memory. For example, the following java program will never run out of memory even when run with no optimizations (<em>-Djava.compiler=NONE</em>)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> java.util.UUID<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String <span style="color:#f92672">[</span><span style="color:#f92672">]</span>args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> String<span style="color:#f92672">(</span>UUID<span style="color:#f92672">.</span><span style="color:#a6e22e">randomUUID</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">)</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Other pros include:</p>
+<ul>
+<li>No dangling pointers.</li>
+<li>No double frees</li>
+<li>Simpler code</li>
+<li>Faster development cycle</li>
+</ul>
+<p><em>Simpler code</em> is the key win with <em>automatic memory management</em>. In <em>garbage collected</em> languages, the code is more readable and easier to reason about.</p>
+<p>Having said that, <em>automatic memory management</em> isn't the silver-bullet. It doesn't guarantee absence of memory leaks (more on that later). It introduces space/time tradeoffs with subtle impacts on a program's runtime. Let's start with basics before getting into subtleties.</p>
+<h2 id="basics-of-automatic-memory-management">Basics Of Automatic Memory Management</h2>
+<p>An <em>automatic memory management</em> system typically comprises of two <em>almost</em> independent parts:</p>
+<ol>
+<li>Dynamic memory allocation</li>
+<li>Garbage collection</li>
+</ol>
+<h3 id="dynamic-memory-allocation">Dynamic Memory Allocation</h3>
+<p>Dynamic memory allocation involves a <em>heap</em> that serves as a pool of memory that backs all the allocated objects. Heap allocation allows the programmers to allocate objects of variable sizes and then freely pass them around beyond current execution context. All heap allocated objects are accessed through <em>references</em>. A <em>reference</em> typically points to one of the following:</p>
+<ul>
+<li>Address of the allocated object's memory on the heap.</li>
+<li>A <em>handle</em> that in-turn contains the object's memory address on the heap</li>
+</ul>
+<p><em>Handles</em> offer the advantage of allowing an object to be re-allocated easily by updating the handle's value as opposed to updating all the object's references.</p>
+<p>Heap offers APIs to <em>allocate</em> and <em>deallocate</em> the objects. We'll refer to this heap interface as <em>allocator</em>.</p>
+<h2 id="garbage-collector">Garbage Collector</h2>
+<p><em>Garbage collector</em> is the magic component that makes the illusion of <em>infinite memory</em> possible. It typically consists of two semi-independent components known as <em>mutator</em> and <em>collector</em>.</p>
+<h3 id="mutator">Mutator</h3>
+<p>Typically, all components of a language runtime that are responsible for executing application code, allocating/de-allocating new objects, and managing execution contexts get categorized as the <em>mutators</em>. Most reasonably large programs have more than one <em>mutator</em> threads. Exact number of <em>mutator</em> threads is generally irrelevant to the garbage collection approaches.</p>
+<h3 id="collector">Collector</h3>
+<p>The <em>collector</em> actually executes the garbage collection code. It discovers the <em>garbage</em> (read: unreachable) objects and reclaims their storage. In concurrent GCs, there may be more than one <em>collector</em> threads. Exact number of <em>collectors</em> is mostly irrelevant to the approaches that we are going to discuss. Most GCs, offer control over the behavior of <em>collectors</em> through configuration settings (more on that later).</p>
+<p>The <em>collector</em> is correct <em><strong>only</strong></em> if it never reclaims <em>live</em> objects. Theoretically, determining <em>liveness</em> of an object might not even be possible (e.g. in systems supporting hot patching) even if we've the time to <em>scan the world</em>. So, most <em>garbage collectors</em> cheat a bit and treat <em>reachability</em> as <em>liveness</em>. An object is considered <em>reachable</em> if a <em>mutator</em> can reach it by following direct or indirect references of the objects in its execution contexts (local/global variables, stack frames, virtual/physical CPU registers, thread local storage, heap references etc.).</p>
+<h2 id="desirable-properties-of-garbage-collection-algorithms">Desirable Properties of Garbage Collection Algorithms</h2>
+<p>Just like distributed systems, designing a <em>garbage collection</em> mechanism is an exercise in balancing tradeoffs. Some of the desirable properties of <em>garbage collectors</em> are:</p>
+<ul>
+<li><strong>Correctness</strong> - A GC must be <em>correct</em> and <em>safe</em>. It must never reclaim <em>live</em> objects. The safety typically comes at the cost of performance or efficiency. There are cases where a GCs performance can be improved by feeding it hints from compiler and other runtime systems. More on that later.</li>
+<li><strong>Performance</strong> - Overall time spent by a GC should be as short as possible. Typically a GC's performance is measured in two dimensions - latency and throughput. Both significantly depend on the implementation, workload and runtime environment. GCs are by nature intrusive. They introduce pauses by stopping all <em>mutators</em> while performing garbage accounting. It is clearly desirable for these pauses to be as short and as infrequent as possible. In some systems (i.e. distributed lease/transaction coordinators etc.), long pauses could trigger failures resulting in system downtime. Having said that, measuring <em>pause time</em> alone isn't particularly useful in itself. A GC that has no pauses and not <em>garbage reclaiming throughput</em> wouldn't be very useful. Ideally, a GC should reclaim <em>all</em> the garbage in the heap. However, this isn't always possible or even desirable (say for large heaps). For performance reasons, it may be desirable not to collect the whole heap at every <em>collector cycle</em>. Generational garbage collectors (used in Java/.NET etc.) segregate objects by their age into two or more regions called <em>generations</em>. By concentrating effort on the youngest generation, generational collectors can both improve total collection time and reduce the average <em>pause time</em> for individual collections. More on that later.</li>
+<li><strong>Space Overhead</strong> - The goal of <em>automatic memory management</em> is the safe and efficient use of space. Memory managers, both <em>explicit</em> and <em>automatic</em>, impose space overheads on the system. Some GCs may impose per-object space overhead (e.g. reference counts); others may be able to piggy back on an object's existing layout (e.g, a dirty bit). <em>Collectors</em> also have space overhead as they are actually doing the garbage accounting. The standard space-vs-time tradeoff applies to all algorithms and GCs are no exception.</li>
+</ul>
+<p>GC algorithms are complex and juggle way too many tradeoffs. There are cases where programming language semantics can aid a GC's performance. For example, functional languages like ML/Scala, distinguish mutable data from immutable - and GC implementations can leverage this information to improve performance. In the next post, we'll go over the four broad categories of GC algorithms and do a deep dive into one of them. Stay tuned.</p>
+</div>
+
+    
+    
+    
+        <h4 class="page-header">Related</h4>
+         <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="http://lazymonad.com/post/garbage-collection-part-2-mark-sweep/">Garbage Collection - Part 2 - Mark Sweep Collection</a></h4>
+    <h5>January 1, 2016</h5>
+    
+<a href="http://lazymonad.comtags/system-design"><kbd class="item-tag">System Design</kbd></a>
+
+<a href="http://lazymonad.comtags/garbage-collection"><kbd class="item-tag">Garbage Collection</kbd></a>
+
+<a href="http://lazymonad.comtags/memory-management"><kbd class="item-tag">Memory Management</kbd></a>
+
+<a href="http://lazymonad.comtags/language-runtimes"><kbd class="item-tag">Language Runtimes</kbd></a>
+
+
+
+</div>
+  <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="http://lazymonad.com/post/are-vmms-making-us-complacent/">Are VMMs making us complacent?</a></h4>
+    <h5>April 4, 2015</h5>
+    
+<a href="http://lazymonad.comtags/rant"><kbd class="item-tag">Rant</kbd></a>
+
+<a href="http://lazymonad.comtags/recommended-reading"><kbd class="item-tag">Recommended Reading</kbd></a>
+
+<a href="http://lazymonad.comtags/operating-systems"><kbd class="item-tag">Operating Systems</kbd></a>
+
+<a href="http://lazymonad.comtags/system-design"><kbd class="item-tag">System Design</kbd></a>
+
+<a href="http://lazymonad.comtags/virtual-machines"><kbd class="item-tag">Virtual Machines</kbd></a>
+
+<a href="http://lazymonad.comtags/microkernels"><kbd class="item-tag">Microkernels</kbd></a>
+
+<a href="http://lazymonad.comtags/vmms"><kbd class="item-tag">VMMs</kbd></a>
+
+
+
+</div>
+  <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="http://lazymonad.com/post/hints-for-system-design/">Hints for System Design</a></h4>
+    <h5>April 29, 2012</h5>
+    
+<a href="http://lazymonad.comtags/recommended-reading"><kbd class="item-tag">Recommended Reading</kbd></a>
+
+<a href="http://lazymonad.comtags/distributed-systems"><kbd class="item-tag">Distributed Systems</kbd></a>
+
+<a href="http://lazymonad.comtags/system-design"><kbd class="item-tag">System Design</kbd></a>
+
+<a href="http://lazymonad.comtags/butler-w.-lampson"><kbd class="item-tag">Butler W. Lampson</kbd></a>
+
+
+
+</div>
+ 
+    
+
+    
+    
+
+</main>
+
+        <footer>
+            <p class="copyright text-muted">© All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+        </footer>
+
+        
+
+        
+    </body>
+
+</html>
+

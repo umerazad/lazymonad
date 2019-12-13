@@ -1,0 +1,80 @@
+://keybase.io/umerazad
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://lazymonad.com
+  * I am umerazad (https://keybase.io/umerazad) on keybase.
+  * I have a public key with fingerprint 80DD 8DFA D90E D231 4C5C  47A4 67AD F44B 14DC 054E
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01012eff1c97908b3fd3a7ee6f5d0005dc154a9d261d08ff73856ea94717b56a184d0a",
+      "fingerprint": "80dd8dfad90ed2314c5c47a467adf44b14dc054e",
+      "host": "keybase.io",
+      "key_id": "67adf44b14dc054e",
+      "kid": "01012eff1c97908b3fd3a7ee6f5d0005dc154a9d261d08ff73856ea94717b56a184d0a",
+      "uid": "cd376f4763ef5308da288cfe96328219",
+      "username": "umerazad"
+    },
+    "merkle_root": {
+      "ctime": 1514587076,
+      "hash_meta": "0834c7ee23b2f702cdab62be1617041f9f1e2e3cda477c37918c8a0f551e2334",
+      "seqno": 1868850
+    },
+    "revoke": {
+      "sig_ids": [
+        "40e0caa1b3987ea58a615113f33c114f2622013ea6cf80e8c2e5a2295d0ffeb90f"
+      ]
+    },
+    "service": {
+      "hostname": "lazymonad.com",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1514587120,
+  "expire_in": 157680000,
+  "prev": "efaa77b031ef2bac6f782d251341ceb9886ab0a4792c924c7672878f696d47b8",
+  "seqno": 17,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.76
+Comment: https://keybase.io/crypto
+
+yMLAAnicrZNbaBxVGMd3jTYYG4za2BfxMr4EWeq5zTln1pfQaKxBbWMLMTZxOXMu
+yTS7O9uZ2U3Tsmgr4qW2mFKwVHujQpE2GqsgCjUSI1hitNAGLKWgse1DqKQVKhYf
+6plQQcFHn2bmO//z/37f/8yZam7INGWP3LnzxsOnTr+WnZ6sVTMvdH59ZYvjh2rE
+yW9xhvTiQxeVjpPCUKCcvAMggEgbA6XHPMB9bBQWTGtqXAUAcJWELhGeQhQqwI1h
+mLtUC48wyHyXCsiJAsLJOSYoD+ioEgXlxNpyoBRXRigPaIUwJNKVhAlCmVCGEB8S
+JYFLtN04GMbpDgvni1ivCEJbsx+FRbz/0P/P3NVFO6kwo4YwirVxMeBKIM6l0R7F
+iCPopcJYR2VR0lZdLelIbBbKqecc+zpU1IUoDJM0XJkEqQS6kLicAUbtgCIeLJR0
+IlJsjom0mAj7yDCApBI+Rb6GFDJAoPEM1EhjWyaMScw8yCUXwLiurWNMLEesN5ZD
+24FTzl1gCSJdC4d02jwOBmxssZNf7xCggRQC+tjjTAuXC2qZIDYYSwiJQRQhALEW
+VBoONJdIuwIhz6ZnjPY9YJz+etosqgVy0Tw9p5vzF8XmkVJYFmqFDEsWqRKFSSjD
+ol0aTJJKPs0lGamk0mHtF26aFPygrOxfYjfUdBQHYdlOYZX/jgwikHP0pkoQ6UKQ
+KlxGuT1RkLbRNWupjRCM+QBDbZAvJDWMI4VciAmUFp1zKnxgA/SQ9JCNmzLEGTfU
+o4own/8jQ2Y5xYD1tMmVRVKNtFOf/Krv1ky2KbPktlvS65Npur3l70u1ranxRrDQ
+Mf7xK3sXxruOovY1L11vnhh+a99uLHDu8fnJ7O4Ly8aOzfx8d8PJxstXa6Pzd4we
+39/a9+dccf9vH75xV+eX69t35GoXH1mZ/fTsYMOlD1Z93jb7/fMtRw69c67z/bnp
+3u1LOkjj3omPZl78dXXP62vXPqB+fLrFHJg7u/r6PVPLzfwJ9tjCoS/8Y/l33+w6
+uqxxJPxl6cGV3801n7zWP7prI81f+Cze7m/95u2fXm3j3dmeg9Xzvx/+o1DsG9vR
+tSt+Ymv7nkdXdb88/uC2sW+f3Llvdvj40kv3Jnu6z5zo6Omdjtqeeui5+3+4COpT
+53ovn6+PrnmvdWJ8dlN1w4Z1p/vvm2n95NmGGfLMX6bFhDg=
+=COf6
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/umerazad
+
+==================================================================
