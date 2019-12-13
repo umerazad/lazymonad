@@ -9,7 +9,7 @@ I recently came across an interesting [opinion paper](https://www.usenix.org/leg
 
 ## Avoid Liability Inversion
 
-Their claim about microkernels having performance problems because of page evictions by user-space pagers is correct for the most part. But this problem will exists for VMMs as well if they start oversubscribing RAM. Modern day VMMs (read Xen) completely side step the problem by not oversubscribing RAM in the first place. In this regard, I believe, Xen is close to exokernels than microkernels. You could achieve simiilar isolation with an exokernel that also doesn't allow oversubscription of RAM across processes.
+Their claim about microkernels having performance problems because of page evictions by user-space pagers is correct for the most part. But this problem will exists for VMMs as well if they start oversubscribing RAM. Modern day VMMs (read Xen) completely side step the problem by not oversubscribing RAM in the first place. In this regard, I believe, Xen is close to exokernels than microkernels. You could achieve similar isolation with an exokernel that also doesn't allow oversubscription of RAM across processes.
 
 As a counter example -- for failure isolation -- consider that in a Xen system, all VMs are clients of Dom0. And if
 a device driver misbehaves in Dom0, it can bring down all the VMs. While in case of microkernels only those processes
