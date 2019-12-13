@@ -1,47 +1,64 @@
 baseURL = "http://lazymonad.com"
 languageCode = "en"
 title = "Lazy Monad"
-theme = "hugo-nuo"
+theme = "minimal"
 enableRobotsTXT = true
 PygmentsCodeFences = true
 PygmentsStyle = "monokai"
 canonifyurls = true
 
-# Disqus Username
-# disqusShortname = "disqus_shortname"
-
-# Google Analytics UA number
-# googleAnalytics = "UA-XXXXXXXX-X"
-
 # Copyright of your post
 copyright = "© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License. See: https://creativecommons.org/licenses/by-nc/4.0/legalcode."
 
-# Initial site menu, you can extend menu with content.
+[params]
+    author = "Muhammad Umer Azad"
+    description = "Personal blog"
+    githubUsername = "umerazad"
+    accent = "darkgreen"
+    showBorder = true
+    backgroundColor = "white"
+    font = "Inconsolata" # should match the name on Google Fonts!
+    highlight = false
+    highlightStyle = "solarized-dark"
+    highlightLanguages = ["rust", "go", "haskell", "c", "c++", "C#", "python"]
+
 [[menu.main]]
-  name = "Home"
-  weight = 10
-  identifier = "home"
-  url = "/"
+    url = "/post/"
+    name = "Posts"
+    weight = 1
 
 [[menu.main]]
   name = "Tags"
-  weight = 30
+  weight = 2
   identifier = "tags"
   url = "/tags/"
 
-# Add your own params here
-[params]
-  author = "Muhammad Umer Azad"
-  avatar = "/img/avatar.jpg"
-  seotitle = "LazyMonad"
-  paginate = 10
+[[menu.main]]
+    url = "/about/"
+    name = "About"
+    weight = 3
 
-  # Choose your social networks
-  email = "umer@fastmail.com"
-  github = "umerazad"
-  twitter = "umerazad"
-  linkedin = "umerazad"
 
-  # Google Webmaster
-  # https://www.google.com/webmasters/
-  # googleSiteVerification = "_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc"
+# Social icons to be shown on the right-hand side of the navigation bar.
+# The "name" field should match the name of the icon in Font Awesome.
+# The list of available icons can be found at http://fontawesome.io/icons.
+
+[[menu.icon]]
+    url = "mailto:umer@fastmail.com"
+    name = "envelope-o"
+    weight = 1
+
+[[menu.icon]]
+    url = "https://github.com/umerazad/"
+    name = "github"
+    weight = 2
+
+[[menu.icon]]
+    url = "https://twitter.com/umerazad/"
+    name = "twitter"
+    weight = 3
+
+[[menu.icon]]
+    url = "https://www.linkedin.com/in/umerazad/"
+    name = "linkedin"
+    weight = 4
